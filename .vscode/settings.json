@@ -1,0 +1,9 @@
+{
+    "explorer.confirmDragAndDrop": false,
+
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "git.smartCommitChanges": "all",
+    
+    "workbench.colorTheme": "One Dark Pro Darker"
+}

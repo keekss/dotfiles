@@ -1,0 +1,21 @@
+{
+    "name": "Base Container",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "."
+    },
+    "postCreateCommand": "bash /workspaces/dotfiles/setup/setup_base.sh",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-azuretools.vscode-docker",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "mikestead.dotenv",
+                "timonwong.shellcheck",
+                "eamodio.gitlens",
+                "zhuangtongfa.Material-theme"
+            ]
+        }
+    }
+}
