@@ -4,12 +4,12 @@
 packages=("git" "zsh" "tmux")
 
 # Update package lists
-sudo apt update
+sudo apt-get update
 
 # Install packages
 for package in "${packages[@]}"; do
-    if ! dpkg -l | grep -q "^ii  $package"; then
-        if ! sudo apt install -y "$package"; then
+    if ! dpkg-query -W -f='${Status}' "$package" 2>/dev/null | grep -q "ok installed"; then
+        if ! sudo apt-get install -y "$package" && sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*; then
             echo "Failed to install $package. Exiting script."
             exit 1
         fi
@@ -17,16 +17,3 @@ for package in "${packages[@]}"; do
         echo "$package is already installed."
     fi
 done
-
-# Symlink
-
-# Directory of your dotfiles repository
-# dotfiles_dir="/path/to/your/dotfiles"
-
-# # List of files to symlink
-# files=("file1" "file2" "file3")
-
-# # Create symlinks
-# for file in "${files[@]}"; do
-#     ln -s "$dotfiles_dir/$file" "$HOME/$file"
-# done
