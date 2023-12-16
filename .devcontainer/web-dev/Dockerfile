@@ -1,1 +1,1 @@
-FROM base:latest
+FROM ghcr.io/keekss/base:latest
