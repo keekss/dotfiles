@@ -1,36 +1,43 @@
 name: Build and Push Docker Images
-
 on:
   push:
     branches:
       - main
     paths:
-      - '.devcontainer/base/**'
-      - '.devcontainer/large/**'
-      - '.devcontainer/web-dev/**'
+      - '.devcontainer/**'
 
 jobs:
-  build-and-push:
+  check-dockerfiles:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        dockerfile: ['base', 'large', 'web-dev']
-      fail-fast: false
-
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
     - name: Check out code
-      uses: actions/checkout@v3 # Updated to the latest version
+      uses: actions/checkout@v3
+    - name: Set matrix for Dockerfile
+      id: set-matrix
+      run: |
+        DOCKERFILES=$(git diff --name-only HEAD~1 HEAD | grep '^\.devcontainer/' | cut -d/ -f3 | uniq | jq -R -s -c 'split("\n")[:-1]')
+        echo "::set-output name=matrix::${DOCKERFILES}"
 
+  build-and-push:
+    needs: check-dockerfiles
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dockerfile: ${{fromJson(needs.check-dockerfiles.outputs.matrix)}}
+      fail-fast: false
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
     - name: Log in to GitHub Container Registry
-      uses: docker/login-action@v2 # Assuming v2 is the latest version
+      uses: docker/login-action@v2
       with:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
         password: ${{ secrets.PACKAGE_REGISTRY_RW }}
-
     - name: Build and push Docker image
-      uses: docker/build-push-action@v3 # Assuming v3 is the latest version
+      uses: docker/build-push-action@v3
       with:
         context: .devcontainer/${{ matrix.dockerfile }}
         push: true
