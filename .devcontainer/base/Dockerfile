@@ -1,5 +1,6 @@
-# Start with Microsoft's Dev Containers universal linux image.
-FROM mcr.microsoft.com/devcontainers/universal:linux
+# This Dockerfile is used to build a base image for development containers.
+# It starts with the official Ubuntu base image and adds additional dependencies as needed.
+FROM 64mcr.microsoft.com/devcontainers/base:ubuntu
 
 # Clone your dotfiles repository
 RUN git clone https://github.com/keekss/dotfiles.git ~/dotfiles

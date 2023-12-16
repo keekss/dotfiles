@@ -1,10 +1,9 @@
 {
-    "name": "Base Container",
+    "name": "Large Container",
     "build": {
         "dockerfile": "Dockerfile",
         "context": "."
     },
-    "postCreateCommand": "bash /workspaces/dotfiles/.devcontainer/base/setup.sh",
     "customizations": {
         "vscode": {
             "extensions": [
