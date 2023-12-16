@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # List of packages to install
-packages=("git" "zsh" "tmux")
+packages=("git" "zsh" "tmux" "curl" "wget" "vim" "build-essential")
 
 # Update package lists
 sudo apt-get update
