@@ -16,6 +16,7 @@ jobs:
     strategy:
       matrix:
         dockerfile: ['base', 'large', 'web-dev']
+      fail-fast: false
 
     steps:
     - name: Check out code
