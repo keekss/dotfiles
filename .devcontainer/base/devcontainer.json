@@ -15,7 +15,8 @@
                 "mikestead.dotenv",
                 "timonwong.shellcheck",
                 "eamodio.gitlens",
-                "zhuangtongfa.material-theme"
+                "zhuangtongfa.material-theme",
+                "redhat.vscode-yaml"
             ]
         }
     }
