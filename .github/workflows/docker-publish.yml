@@ -17,7 +17,7 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: ghcr.io
-        username: ${{ keekss }}
+        username: ${{ github.repository_owner }}
         password: ${{ secrets.PACKAGE_REGISTRY_RW }}
 
     - name: Build and push Docker image
@@ -25,4 +25,4 @@ jobs:
       with:
         context: .devcontainer/codespaces-base
         push: true
-        tags: ghcr.io/${{ keekss }}/base:latest
+        tags: ghcr.io/${{ github.repository_owner }}/base:latest
