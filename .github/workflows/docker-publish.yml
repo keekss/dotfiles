@@ -17,7 +17,9 @@ jobs:
     - name: Set matrix for Dockerfile
       id: set-matrix
       run: |
-        DOCKERFILES=$(git diff --name-only HEAD~1 HEAD | grep '^\.devcontainer/' | cut -d/ -f3 | uniq | jq -R -s -c 'split("\n")[:-1]')
+        BASE_DOCKERFILE=$(git diff --name-only HEAD~1 HEAD | grep '^\.devcontainer/base' | cut -d/ -f3)
+        OTHER_DOCKERFILES=$(git diff --name-only HEAD~1 HEAD | grep '^\.devcontainer/' | grep -v '^\.devcontainer/base' | cut -d/ -f3 | uniq)
+        DOCKERFILES=$(echo "$BASE_DOCKERFILE" && echo "$OTHER_DOCKERFILES") | jq -R -s -c 'split("\n")[:-1]'
         echo "::set-output name=matrix::${DOCKERFILES}"
 
   build-and-push:
