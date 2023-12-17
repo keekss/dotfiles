@@ -4,12 +4,7 @@
         "dockerfile": "Dockerfile",
         // "context": "."
     },
-    "postCreateCommand": [
-        "chmod +x install-extensions.sh",
-        "chmod +x install-packages.sh",
-        "bash install-extensions.sh",
-        "bash install-packages.sh"
-    ]
+        "postCreateCommand": "chmod +x install-extensions.sh install-packages.sh && bash install-extensions.sh && bash install-packages.sh"
     // "postCreateCommand": [
     //     "chmod +x /workspaces/dotfiles/.devcontainer/base/install-extensions.sh",
     //     "chmod +x /workspaces/dotfiles/.devcontainer/base/install-packages.sh",
