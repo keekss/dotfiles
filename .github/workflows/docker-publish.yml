@@ -58,7 +58,8 @@ jobs:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.PACKAGE_REGISTRY_RW }}
     - name: Echo matrix config
-      run: echo "Building image for configuration: ${{ matrix.config }}"
+      run: |
+        echo "Building image for configuration: ${{ matrix.config }}"
     - name: Build and push other Docker images
       uses: docker/build-push-action@v3
       with:
