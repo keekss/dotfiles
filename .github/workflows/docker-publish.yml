@@ -42,28 +42,31 @@ jobs:
         push: true
         tags: ghcr.io/${{ github.repository_owner }}/codespaces-base:latest
 
-  build-and-push-others:
-    needs: [prepare-matrix, build-and-push-base]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix: ${{fromJson(needs.prepare-matrix.outputs.matrix)}}
-      fail-fast: false
-    steps:
-    - name: Check out code
-      uses: actions/checkout@v3
-    - name: Log in to GitHub Container Registry
-      uses: docker/login-action@v2
-      with:
-        registry: ghcr.io
-        username: ${{ github.repository_owner }}
-        password: ${{ secrets.PACKAGE_REGISTRY_RW }}
-    - name: Echo matrix config
-      run: |
-        echo "Building image for configuration: ${{ matrix.config }}"
-    - name: Build and push other Docker images
-      uses: docker/build-push-action@v3
-      with:
-        context: .devcontainer/${{ matrix.config }}
-        file: .devcontainer/${{ matrix.config }}/Dockerfile
-        push: true
-        tags: ghcr.io/${{ github.repository_owner }}/codespaces-${{ matrix.config }}:latest
+    build-and-push-others:
+      needs: [prepare-matrix, build-and-push-base]
+      runs-on: ubuntu-latest
+      strategy:
+        matrix: ${{fromJson(needs.prepare-matrix.outputs.matrix)}}
+        fail-fast: false
+      steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.PACKAGE_REGISTRY_RW }}
+      - name: Debug matrix output
+        run: 'echo "Matrix: ${{ matrix }}"'
+      - name: Echo matrix config
+        run: |
+          echo "Building image for configuration: ${{ matrix.config }}"
+      - name: Build and push other Docker images
+        uses: docker/build-push-action@v3
+        with:
+          context: .devcontainer/${{ matrix.config }}
+          file: .devcontainer/${{ matrix.config }}/Dockerfile
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/codespaces-${{ matrix.config }}:latest
+        if: matrix.config != ''
