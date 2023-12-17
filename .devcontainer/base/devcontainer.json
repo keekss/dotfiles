@@ -7,10 +7,12 @@
     "customizations": {
         "vscode": {
             "extensions": [
+                // Git
                 "eamodio.gitlens",
                 "GitHub.copilot",
                 "GitHub.copilot-chat",
                 "GitHub.vscode-github-actions",
+
                 "mhutchie.git-graph",
                 "mikestead.dotenv",
                 "ms-azuretools.vscode-docker",
