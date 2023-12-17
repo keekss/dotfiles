@@ -2,13 +2,22 @@
     "name": "Base Codespace",
     "build": {
         "dockerfile": "Dockerfile",
-        // "context": "."
+        "context": "."
     },
-        "postCreateCommand": "chmod +x install-extensions.sh install-packages.sh && bash install-extensions.sh && bash install-packages.sh"
-    // "postCreateCommand": [
-    //     "chmod +x /workspaces/dotfiles/.devcontainer/base/install-extensions.sh",
-    //     "chmod +x /workspaces/dotfiles/.devcontainer/base/install-packages.sh",
-    //     "bash /workspaces/dotfiles/.devcontainer/base/install-extensions.sh",
-    //     "bash /workspaces/dotfiles/.devcontainer/base/install-packages.sh"
-    // ]
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "eamodio.gitlens",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "GitHub.vscode-github-actions",
+                "mhutchie.git-graph",
+                "mikestead.dotenv",
+                "ms-azuretools.vscode-docker",
+                "redhat.vscode-yaml",
+                "timonwong.shellcheck",
+                "zhuangtongfa.material-theme"
+            ]
+        }
+    }
 }

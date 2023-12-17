@@ -1,11 +1,23 @@
 {
-    "name": "Web Development Codepsace",
+    "name": "Web Development Codespace",
     "build": {
         "dockerfile": "Dockerfile",
         "context": "."
     },
-    "postCreateCommand": [
-        "chmod +x /workspaces/dotfiles/.devcontainer/web-dev/install-packages.sh",
-        "bash /workspaces/dotfiles/.devcontainer/web-dev/install-packages.sh"
-    ]
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "eamodio.gitlens",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "GitHub.vscode-github-actions",
+                "mhutchie.git-graph",
+                "mikestead.dotenv",
+                "ms-azuretools.vscode-docker",
+                "redhat.vscode-yaml",
+                "timonwong.shellcheck",
+                "zhuangtongfa.material-theme"
+            ]
+        }
+    }
 }
