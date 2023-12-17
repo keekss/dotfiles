@@ -2,7 +2,7 @@
     "name": "Web Development Codepsace",
     "build": {
         "dockerfile": "Dockerfile",
-        "context": "."
+        "context": ".."
     },
     "postCreateCommand": [
         "chmod +x /workspaces/dotfiles/.devcontainer/web-dev/install-packages.sh",
