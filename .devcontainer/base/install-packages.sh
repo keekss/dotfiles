@@ -1,12 +1,20 @@
 #!/bin/bash
 
 # List of packages to install
-packages=("git" "zsh" "tmux" "curl" "wget" "vim" "build-essential")
+packages=(
+    "build-essential"
+    "curl"
+    "git"
+    "tmux"
+    "vim"
+    "wget"
+    "zsh"
+)
 
 # Update package lists
 sudo apt-get update
 
-# Install packages
+# Install packages, checking if they are already installed first
 for package in "${packages[@]}"; do
     if ! dpkg-query -W -f='${Status}' "$package" 2>/dev/null | grep -q "ok installed"; then
         if ! sudo apt-get install -y "$package" && sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*; then

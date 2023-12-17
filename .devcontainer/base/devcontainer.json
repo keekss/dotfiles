@@ -1,23 +1,13 @@
 {
-    "name": "Base Container",
+    "name": "Base Codespace",
     "build": {
         "dockerfile": "Dockerfile",
         "context": "."
     },
-    "postCreateCommand": "bash /workspaces/dotfiles/.devcontainer/base/setup.sh",
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "ms-azuretools.vscode-docker",
-                "GitHub.vscode-github-actions",
-                "GitHub.copilot",
-                "GitHub.copilot-chat",
-                "mikestead.dotenv",
-                "timonwong.shellcheck",
-                "eamodio.gitlens",
-                "zhuangtongfa.material-theme",
-                "redhat.vscode-yaml"
-            ]
-        }
-    }
+    "postCreateCommand": [
+        "chmod +x /workspaces/dotfiles/.devcontainer/base/install-extensions.sh",
+        "chmod +x /workspaces/dotfiles/.devcontainer/base/install-packages.sh",
+        "bash /workspaces/dotfiles/.devcontainer/base/install-extensions.sh",
+        "bash /workspaces/dotfiles/.devcontainer/base/install-packages.sh"
+    ]
 }
