@@ -9,6 +9,7 @@ packages=(
     "vim"
     "wget"
     "zsh"
+    "jq"
 )
 
 # Update package lists

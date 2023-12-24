@@ -7,6 +7,7 @@ packages=(
     "python3-pip" # Pip package installer for Python
     "ruby-full" # Ruby programming language
     "ruby-bundler" # Bundler for managing Ruby application dependencies
+    "jq"
 )
 # Update package lists
 sudo apt-get update
