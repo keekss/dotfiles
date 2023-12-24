@@ -1,0 +1,8 @@
+{
+    "name": "Backup Codespace",
+    // "build": {
+    //     "dockerfile": "Dockerfile",
+    //     "context": "."
+    // },
+    "postCreateCommand": "cat /workspaces/dotfiles/extensions.json | jq -r '.extensions[]' | xargs -L 1 code --install-extension"
+}
