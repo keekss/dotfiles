@@ -4,7 +4,7 @@
         "dockerfile": "Dockerfile",
         "context": "."
     },
-    "postCreateCommand": "cat /workspaces/.vscode/extensions.json | jq -r '.recommendations[]' | xargs -L 1 code --install-extension"
+    "postCreateCommand": "cat /workspaces/dotfiles/vscode/extensions.json | jq -r '.recommendations[]' | xargs -L 1 code --install-extension"
     // "customizations": {
     //     "vscode": {
     //         "extensions": [
