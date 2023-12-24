@@ -4,20 +4,5 @@
         "dockerfile": "Dockerfile",
         "context": "."
     },
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "eamodio.gitlens",
-                "GitHub.copilot",
-                "GitHub.copilot-chat",
-                "GitHub.vscode-github-actions",
-                "mhutchie.git-graph",
-                "mikestead.dotenv",
-                "ms-azuretools.vscode-docker",
-                "redhat.vscode-yaml",
-                "timonwong.shellcheck",
-                "zhuangtongfa.material-theme"
-            ]
-        }
-    }
+    "postCreateCommand": "cat /workspaces/dotfiles/extensions.json | jq -r '.extensions[]' | xargs -L 1 code --install-extension"
 }
