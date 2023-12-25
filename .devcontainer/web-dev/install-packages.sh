@@ -8,6 +8,7 @@ packages=(
     "ruby-full" # Ruby programming language
     "ruby-bundler" # Bundler for managing Ruby application dependencies
     "jq"
+    "xargs"
 )
 # Update package lists
 sudo apt-get update

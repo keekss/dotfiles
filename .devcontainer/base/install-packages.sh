@@ -10,6 +10,7 @@ packages=(
     "wget"
     "zsh"
     "jq"
+    "xargs"
 )
 
 # Update package lists
